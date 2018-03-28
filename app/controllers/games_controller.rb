@@ -15,7 +15,12 @@ class GamesController < ApplicationController
 
   def guess
     game = Game.where(game_id: params[:game_id]).first
-    render json: game.guess(params[:x].to_i, params[:y].to_i)
+    result = game.guess(params[:x].to_i, params[:y].to_i)
+    if game.completed
+      result[:url] = 'http://easter_egg_hunt.andrewfaraday.com/surprise'
+      result[:turns] = game.turns
+    end
+    render json: result
   end
 
 end

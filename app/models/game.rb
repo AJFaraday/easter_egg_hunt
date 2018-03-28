@@ -5,6 +5,7 @@ class Game < ApplicationRecord
       game_id: generate_id,
       x: rand(100) + 1,
       y: rand(100) + 1,
+      turns: 0,
       completed: false
     )
   end
@@ -12,9 +13,11 @@ class Game < ApplicationRecord
   def guess(guessed_x, guessed_y)
     xclue = clue(guessed_x, x)
     yclue = clue(guessed_y, y)
-    if xclue == '=' && yclue == '='
-      update_attribute(:completed, true)
+    if xclue == 'right' && yclue == 'right'
+      self.completed = true
     end
+    self.turns += 1
+    self.save
     {
       x: xclue,
       y: yclue

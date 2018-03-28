@@ -1,0 +1,71 @@
+<h1>Easter Egg Hunt API</h1>
+<p>
+  This application will hide an Easter egg in a garden, then accept
+  API calls to guess where the egg is. It'll tell you if your X or Y
+  coordinate is higher or lower than the egg's position.
+  It'll also tell you if either or both of your co-ordinates are correct.
+</p>
+
+<ul>
+  <li>The garden has a size of 100 by 100. (The coordinates are from 1 to 100)</li>
+  <li>You can guess as many times as you like, but try to get it in the smallest number of turns.</li>
+  <li>The returned data is in JSON format.</li>
+</ul>
+
+<h2>The API calls</h2>
+
+<h3>New Game</h3>
+
+<p>Example call:</p>
+
+<pre>
+  easter_egg_hunt.andrewfaraday.com/new_game
+</pre>
+
+<p>
+  This will set up a garden and hide an egg in it. It will hand you a game_id,
+  which is required for playing the game.
+</p>
+
+<p>Example return:</p>
+
+<pre>
+  {game_id: 'abcde'}
+</pre>
+
+<h3>Guess </h3>
+
+<pre></pre>
+
+<p>Example call:</p>
+
+<pre>
+  easter_egg_hunt.andrewfaraday.com/guess/abcde/50/50
+</pre>
+
+<p>
+  This will take a guess at where the egg is. The app will tell you if the
+  actual position of the egg is higher or lower than your guess.
+</p>
+
+<p>Example return:</p>
+
+<pre>
+  {
+    x: 'higher',
+    y: 'lower'
+  }
+</pre>
+
+The results for each coordinate can be:
+
+<dl>
+  <dt>higher</dt>
+  <dd>You need to guess higher.</dd>
+
+  <dt>lower</dt>
+  <dd>You need to guess lower.</dd>
+
+  <dt>right</dt>
+  <dd>You've got the right answer!</dd>
+</dl>
