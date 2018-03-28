@@ -23,4 +23,10 @@ class GamesController < ApplicationController
     render json: result
   end
 
+  def stats
+    @count = Game.count
+    @max = Game.maximum(:turns)
+    @min = Game.minimum(:turns)
+  end
+
 end
